@@ -124,15 +124,15 @@ def d_square_loss_th(x, y, th, th0):
     #Your code here
     return -2*d_lin_reg_th(x,th,th0)*(y-lin_reg(x,th,th0))
 
-X = np.array([[ 1.,  2.,  3.,  4.], [ 1.,  1.,  1.,  1.]])
-Y = np.array([[ 1. ,  2.2,  2.8,  4.1]])
-th = np.array([[ 1.  ], [ 0.05]]) ; th0 = np.array([[ 2.]])
-print("*** d_square_loss_th")
-print(d_square_loss_th(X[:,0:1], Y[:,0:1], th, th0).tolist())
-print("[[4.1], [4.1]]")
+# X = np.array([[ 1.,  2.,  3.,  4.], [ 1.,  1.,  1.,  1.]])
+# Y = np.array([[ 1. ,  2.2,  2.8,  4.1]])
+# th = np.array([[ 1.  ], [ 0.05]]) ; th0 = np.array([[ 2.]])
+# print("*** d_square_loss_th")
+# print(d_square_loss_th(X[:,0:1], Y[:,0:1], th, th0).tolist())
+# print("[[4.1], [4.1]]")
 
-print(d_square_loss_th(X, Y, th, th0).tolist())
-print("[[4.1, 7.399999999999999, 13.5, 15.600000000000001], [4.1, 3.6999999999999993, 4.5, 3.9000000000000004]]")
+# print(d_square_loss_th(X, Y, th, th0).tolist())
+# print("[[4.1, 7.399999999999999, 13.5, 15.600000000000001], [4.1, 3.6999999999999993, 4.5, 3.9000000000000004]]")
 
 
 def d_mean_square_loss_th(x, y, th, th0):
@@ -156,15 +156,15 @@ def d_mean_square_loss_th(x, y, th, th0):
     #Your code here
     return cv(np.average(d_square_loss_th(x, y, th, th0),1))
 
-print("****** d_mean_square_loss_th")
-X = np.array([[ 1.,  2.,  3.,  4.], [ 1.,  1.,  1.,  1.]])
-Y = np.array([[ 1. ,  2.2,  2.8,  4.1]])
-th = np.array([[ 1.  ], [ 0.05]]) ; th0 = np.array([[ 2.]])
-print(d_mean_square_loss_th(X[:,0:1], Y[:,0:1], th, th0).tolist())
-print("should be [[4.1], [4.1]]")
+# print("****** d_mean_square_loss_th")
+# X = np.array([[ 1.,  2.,  3.,  4.], [ 1.,  1.,  1.,  1.]])
+# Y = np.array([[ 1. ,  2.2,  2.8,  4.1]])
+# th = np.array([[ 1.  ], [ 0.05]]) ; th0 = np.array([[ 2.]])
+# print(d_mean_square_loss_th(X[:,0:1], Y[:,0:1], th, th0).tolist())
+# print("should be [[4.1], [4.1]]")
 
-print(d_mean_square_loss_th(X, Y, th, th0).tolist())
-print("should be [[10.15], [4.05]]")
+# print(d_mean_square_loss_th(X, Y, th, th0).tolist())
+# print("should be [[10.15], [4.05]]")
 
 
 
@@ -195,12 +195,12 @@ def d_square_loss_th0(x, y, th, th0):
     #Your code here
     return 2*(lin_reg(x,th,th0)-y)
 
-print("++++++++++++ d_square_loss_th0")
-X = np.array([[ 1.,  2.,  3.,  4.], [ 1.,  1.,  1.,  1.]])
-Y = np.array([[ 1. ,  2.2,  2.8,  4.1]])
-th = np.array([[ 1.  ], [ 0.05]]) ; th0 = np.array([[ 2.]])
-print(d_square_loss_th0(X, Y, th, th0).tolist())
-print("should be [[4.1, 3.6999999999999993, 4.5, 3.9000000000000004]]")
+# print("++++++++++++ d_square_loss_th0")
+# X = np.array([[ 1.,  2.,  3.,  4.], [ 1.,  1.,  1.,  1.]])
+# Y = np.array([[ 1. ,  2.2,  2.8,  4.1]])
+# th = np.array([[ 1.  ], [ 0.05]]) ; th0 = np.array([[ 2.]])
+# print(d_square_loss_th0(X, Y, th, th0).tolist())
+# print("should be [[4.1, 3.6999999999999993, 4.5, 3.9000000000000004]]")
 
 
 
@@ -217,12 +217,12 @@ def d_mean_square_loss_th0(x, y, th, th0):
     #Your code here
     return np.transpose(np.array([np.average(d_square_loss_th0(x, y, th, th0),1)]))
 
-print("******** d_mean_square_loss_th0")
-X = np.array([[ 1.,  2.,  3.,  4.], [ 1.,  1.,  1.,  1.]])
-Y = np.array([[ 1. ,  2.2,  2.8,  4.1]])
-th = np.array([[ 1.  ], [ 0.05]]) ; th0 = np.array([[ 2.]])
-print(d_mean_square_loss_th0(X, Y, th, th0).tolist())
-print("should be [[4.05]]")
+# print("******** d_mean_square_loss_th0")
+# X = np.array([[ 1.,  2.,  3.,  4.], [ 1.,  1.,  1.,  1.]])
+# Y = np.array([[ 1. ,  2.2,  2.8,  4.1]])
+# th = np.array([[ 1.  ], [ 0.05]]) ; th0 = np.array([[ 2.]])
+# print(d_mean_square_loss_th0(X, Y, th, th0).tolist())
+# print("should be [[4.05]]")
 
 
 
@@ -243,7 +243,17 @@ def d_ridge_obj_th(x, y, th, th0, lam):
     [[210.15], [14.05]]
     """
     #Your code here
-    pass
+    return d_mean_square_loss_th(x, y, th, th0) + 2*lam*th
+
+X = np.array([[ 1.,  2.,  3.,  4.], [ 1.,  1.,  1.,  1.]])
+Y = np.array([[ 1. ,  2.2,  2.8,  4.1]])
+th = np.array([[ 1.  ], [ 0.05]]) ; th0 = np.array([[ 2.]])
+# print(d_ridge_obj_th(X, Y, th, th0, 0.0).tolist())
+# print("should be[[10.15], [4.05]]")
+# print(d_ridge_obj_th(X, Y, th, th0, 0.5).tolist())
+# print("should be [[11.15], [4.1]]")
+# print(d_ridge_obj_th(X, Y, th, th0, 100.).tolist())
+# print("should be[[210.15], [14.05]]")
 
 def d_ridge_obj_th0(x, y, th, th0, lam):
     """Return the derivative of tghe ridge objective value with respect
@@ -251,18 +261,28 @@ def d_ridge_obj_th0(x, y, th, th0, lam):
 
     Note: uses broadcasting to add d x n to d x 1 array below
 
-    >>> X = np.array([[ 1.,  2.,  3.,  4.], [ 1.,  1.,  1.,  1.]])
-    >>> Y = np.array([[ 1. ,  2.2,  2.8,  4.1]])
-    >>> th = np.array([[ 1.  ], [ 0.05]]) ; th0 = np.array([[ 2.]])
-    >>> d_ridge_obj_th0(X, Y, th, th0, 0.0).tolist()
+X = np.array([[ 1.,  2.,  3.,  4.], [ 1.,  1.,  1.,  1.]])
+Y = np.array([[ 1. ,  2.2,  2.8,  4.1]])
+th = np.array([[ 1.  ], [ 0.05]]) ; th0 = np.array([[ 2.]])
+d_ridge_obj_th0(X, Y, th, th0, 0.0).tolist()
     [[4.05]]
-    >>> d_ridge_obj_th0(X, Y, th, th0, 0.5).tolist()
+d_ridge_obj_th0(X, Y, th, th0, 0.5).tolist()
     [[4.05]]
-    >>> d_ridge_obj_th0(X, Y, th, th0, 100.).tolist()
+d_ridge_obj_th0(X, Y, th, th0, 100.).tolist()
     [[4.05]]
     """
     #Your code here
-    pass
+    return d_mean_square_loss_th0(x, y, th, th0)
+
+X = np.array([[ 1.,  2.,  3.,  4.], [ 1.,  1.,  1.,  1.]])
+Y = np.array([[ 1. ,  2.2,  2.8,  4.1]])
+th = np.array([[ 1.  ], [ 0.05]]) ; th0 = np.array([[ 2.]])
+# print(d_ridge_obj_th0(X, Y, th, th0, 0.0).tolist())
+# print(" should be[[4.05]]")
+# print(d_ridge_obj_th0(X, Y, th, th0, 0.5).tolist())
+# print("should be [[4.05]]")
+# print(d_ridge_obj_th0(X, Y, th, th0, 100.).tolist())
+# print("should be [[4.05]]")
 
 #Concatenates the gradients with respect to theta and theta_0
 def ridge_obj_grad(x, y, th, th0, lam):
@@ -301,7 +321,43 @@ def sgd(X, y, J, dJ, w0, step_size_fn, max_iter):
 
     """
     #Your code here
-    pass
+    w=np.copy(w0)
+    fs=[]
+    ws=[]
+    np.random.seed(0)
+    for iter in range(max_iter):
+        
+        i = np.random.randint(y.shape[1])#TODO: consider format of w
+        #TODO: extract xi,yi
+        #xi=np.transpose(np.array([(X[:,i])]))
+        #yi=np.array([y[0][i]])
+        xi = X[:,i:i+1]; yi = y[:,i:i+1]
+
+        new = w.copy()
+        gradient = dJ(xi,yi,w)
+        objective = J(xi,yi,w)
+        ws.append(w)
+        fs.append(objective)
+        new=new-step_size_fn(iter)*gradient
+        
+        w=new.copy()
+
+    return ws[-1],fs,ws
+
+def sgd2(X, y, J, dJ, w0, step_size_fn, max_iter):
+    n = y.shape[1]
+    prev_w = w0
+    fs = []; ws = []
+    np.random.seed(0)
+    for i in range(max_iter):
+        j = np.random.randint(n)
+        Xj = X[:,j:j+1]; yj = y[:,j:j+1]
+        prev_f, prev_grad = J(Xj, yj, prev_w), dJ(Xj, yj, prev_w)
+        fs.append(prev_f); ws.append(prev_w)
+        if i == max_iter - 1:
+            return prev_w, fs, ws
+        step = step_size_fn(i)
+        prev_w = prev_w - step * prev_grad
 
 ############################################################
 #From HW04; Used in the test case for sgd, below
@@ -339,9 +395,28 @@ def sgdTest():
         return num_grad(f)(w)
 
     #Insert code to call sgd on the above
-    pass
+
+    def package_ans(out):
+        w,fs,ws = out
+        print(f"Weights: {w}")
+        print(f"fs first and last elements: {[fs[0],fs[-1]]}")
+        print(f"ws first and last elements: {[ws[0].tolist(),ws[-1].tolist()]}")
+        print(f"length of fs: {len(fs)}")
+        print(f"length of ws: {len(ws)}")
+
+    w0=cv([0.,0.])
+    out = sgd(X,y,J,dJ,w0,(lambda i:0.1),1000)
+    print ("\ntest case 1:")
+    package_ans(out)
+    out = sgd2(X,y,J,dJ,w0,(lambda i:0.1),1000)
+    print ("\nTHEIR test case 1:")
+    package_ans(out)
+    return 
 
 ############################################################
+
+print("********** sgd test ***********")
+sgdTest()
 
 def ridge_min(X, y, lam):
     """ Returns th, th0 that minimize the ridge regression objective
